@@ -1,24 +1,34 @@
+import { faker } from '@faker-js/faker';
+
 describe('Pesquisa de Usuários', function () {
     beforeEach(function () {
-        cy.visit('');
+        cy.visit('https://rarocrud-frontend-88984f6e4454.herokuapp.com/users');
     });
+
+    var nome;
+    var email;
+
     describe('Pesquisa por nome', function () {
         it('Deve permitir pesquisar usuários pelo nome', function () {
-            cy.fixture('./multipleUsers.json').then(function (usuariosCriados) {
-                cy.intercept('GET', '/api/v1/users', {
-                    statusCode: 200,
-                    body: usuariosCriados
-                }).as('getUsers');
-            });
+            nome = faker.person.firstName();
+            email = faker.internet.email().toLowerCase();
 
-            cy.wait('@getUsers');
+            cy.intercept('POST', '/api/v1/users').as('postUsers');
 
-            cy.get('.sc-gsFSXq').click().type('Coxinha');
+            cy.contains('a[href="/users/novo"]', 'Novo').should('be.visible').click();
+
+            cy.get('#name').type(nome);
+            cy.get('#email').type(email);
+            cy.get('.sc-dAlyuH').click();
+            cy.wait('@postUsers');
+
+            cy.contains('Voltar').should('be.visible').click();
+
+            cy.get('.sc-gsFSXq').click().type(nome);
             cy.wait(2000);
             cy.get('#userDataDetalhe').should('be.visible').click();
-            cy.get('[name="id"]').should('be.visible').invoke('val').should('equal', '5ba50491-e2ba-4641-874c-41ec413e09a2');
-            cy.get('#userName').should('be.visible').invoke('val').should('equal', 'Coxinha');;
-            cy.get('#userEmail').should('be.visible').invoke('val').should('equal', 'coxinha@dog.com');
+            cy.get('#userName').should('be.visible').invoke('val').should('equal', nome);
+            cy.get('#userEmail').should('be.visible').invoke('val').should('equal', email);
         });
 
         it('Não deve aparecer nenhum usuário ao pesquisar por nome não cadastrado', function () {
@@ -40,21 +50,25 @@ describe('Pesquisa de Usuários', function () {
 
     describe('Pesquisa por email', function () {
         it('Deve permitir pesquisar usuários pelo email', function () {
-            cy.fixture('./sixMoreUsers.json').then(function (usuariosCriados) {
-                cy.intercept('GET', '/api/v1/users', {
-                    statusCode: 200,
-                    body: usuariosCriados
-                }).as('getUsers');
-            });
+            nome = faker.person.firstName();
+            email = faker.internet.email().toLowerCase();
 
-            cy.wait('@getUsers');
+            cy.intercept('POST', '/api/v1/users').as('postUsers');
 
-            cy.get('.sc-gsFSXq').type('albina.mayert45@gmail.com');
+            cy.contains('a[href="/users/novo"]', 'Novo').should('be.visible').click();
+
+            cy.get('#name').type(nome);
+            cy.get('#email').type(email);
+            cy.get('.sc-dAlyuH').click();
+            cy.wait('@postUsers');
+
+            cy.contains('Voltar').should('be.visible').click();
+
+            cy.get('.sc-gsFSXq').click().type(email);
             cy.wait(2000);
             cy.get('#userDataDetalhe').should('be.visible').click();
-            cy.get('[name="id"]').should('be.visible').invoke('val').should('equal', '8d3822ed-6f52-42a4-bea6-c02dd576b8e7');
-            cy.get('#userName').should('be.visible').invoke('val').should('equal', 'Harry');;
-            cy.get('#userEmail').should('be.visible').invoke('val').should('equal', 'albina.mayert45@gmail.com');
+            cy.get('#userName').should('be.visible').invoke('val').should('equal', nome);
+            cy.get('#userEmail').should('be.visible').invoke('val').should('equal', email);
         });
 
         it('Não deve aparecer usuário ao pesquisar por email não cadastrado', function () {
