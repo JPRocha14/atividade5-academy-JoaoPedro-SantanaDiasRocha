@@ -1,0 +1,16 @@
+[
+    {
+        "id": "ca8efbac-3269-4d28-8e89-4cd53d73f197",
+        "name": "Maynard",
+        "email": "ramon80@yahoo.com",
+        "createdAt": "2024-04-28T21:11:00.495Z",
+        "updatedAt": "2024-04-28T21:11:00.495Z"
+    },
+    {
+        "id": "daaa1c9a-a73c-41a2-af29-74a0aff8c336",
+        "name": "Name Surname",
+        "email": "user@example.com",
+        "createdAt": "2024-04-28T21:11:37.274Z",
+        "updatedAt": "2024-04-28T21:11:37.274Z"
+    }
+]

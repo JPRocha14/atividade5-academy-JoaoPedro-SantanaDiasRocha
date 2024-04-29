@@ -1,0 +1,121 @@
+[
+    {
+        "id": "5ba50491-e2ba-4641-874c-41ec413e09a2",
+        "name": "Coxinha",
+        "email": "coxinha@dog.com",
+        "createdAt": "2024-04-28T21:58:04.810Z",
+        "updatedAt": "2024-04-28T21:58:04.810Z"
+    },
+    {
+        "id": "532602d1-f46e-40dc-a493-1f2e2b8572f2",
+        "name": "Earnestine",
+        "email": "icie.schmitt39@hotmail.com",
+        "createdAt": "2024-04-28T21:58:43.709Z",
+        "updatedAt": "2024-04-28T21:58:43.709Z"
+    },
+    {
+        "id": "ed135f21-68ae-4137-b482-59c0a20e4c91",
+        "name": "merilyn",
+        "email": "merilyn@qa.com.br",
+        "createdAt": "2024-04-28T21:58:50.598Z",
+        "updatedAt": "2024-04-28T21:58:50.598Z"
+    },
+    {
+        "id": "830c4740-3e77-4414-b375-d6cdb56bae54",
+        "name": "Camryn",
+        "email": "lou2@hotmail.com",
+        "createdAt": "2024-04-28T21:59:51.694Z",
+        "updatedAt": "2024-04-28T21:59:51.694Z"
+    },
+    {
+        "id": "8d3822ed-6f52-42a4-bea6-c02dd576b8e7",
+        "name": "Harry",
+        "email": "albina.mayert45@gmail.com",
+        "createdAt": "2024-04-28T22:00:42.078Z",
+        "updatedAt": "2024-04-28T22:00:42.078Z"
+    },
+    {
+        "id": "f9c383ad-3ffa-4216-8173-28c605067b68",
+        "name": "testeraro",
+        "email": "jermaine_lockman98@gmail.com",
+        "createdAt": "2024-04-28T22:01:13.709Z",
+        "updatedAt": "2024-04-28T22:01:13.709Z"
+    },
+    {
+        "id": "7d69f8a7-3028-44c2-a4bc-917fd7e82ad3",
+        "name": "Wyman",
+        "email": "mathias_dibbert86@hotmail.com",
+        "createdAt": "2024-04-28T22:01:42.237Z",
+        "updatedAt": "2024-04-28T22:01:42.237Z"
+    },
+    {
+        "id": "3b153cf2-af5c-49b0-a8b6-e901354fd1b3",
+        "name": "testeraro",
+        "email": "leann.johns33@yahoo.com",
+        "createdAt": "2024-04-28T22:05:23.853Z",
+        "updatedAt": "2024-04-28T22:05:23.853Z"
+    },
+    {
+        "id": "69a60af9-41fc-4ef6-b017-c0bfb37707c1",
+        "name": "testeraro",
+        "email": "mervin_lesch@gmail.com",
+        "createdAt": "2024-04-28T22:06:05.121Z",
+        "updatedAt": "2024-04-28T22:06:05.121Z"
+    },
+    {
+        "id": "25ef1e7b-0030-4599-93d8-cdd59d0fba8d",
+        "name": "testeraro",
+        "email": "tate_fahey@yahoo.com",
+        "createdAt": "2024-04-28T22:06:39.498Z",
+        "updatedAt": "2024-04-28T22:06:39.498Z"
+    },
+    {
+        "id": "080b6724-dc84-4450-9503-c00183109fa1",
+        "name": "testeraro",
+        "email": "dayne72@yahoo.com",
+        "createdAt": "2024-04-28T22:07:09.027Z",
+        "updatedAt": "2024-04-28T22:07:09.027Z"
+    },
+    {
+        "id": "cf5c7f5b-0b1a-472c-9e37-3b9d3d2a564b",
+        "name": "testeraro",
+        "email": "anabelle74@yahoo.com",
+        "createdAt": "2024-04-28T22:09:21.997Z",
+        "updatedAt": "2024-04-28T22:09:21.997Z"
+    },
+    {
+        "id": "363a397d-3f2a-4816-9b53-072e76a9f533",
+        "name": "testeraro",
+        "email": "rachelle17@hotmail.com",
+        "createdAt": "2024-04-28T22:09:36.572Z",
+        "updatedAt": "2024-04-28T22:09:36.572Z"
+    },
+    {
+        "id": "1fead329-b5d7-4fa5-a5b5-1e418cae9af6",
+        "name": "testeraro",
+        "email": "otho.goldner@yahoo.com",
+        "createdAt": "2024-04-28T22:10:11.738Z",
+        "updatedAt": "2024-04-28T22:10:11.738Z"
+    },
+    {
+        "id": "b56a4087-ad61-48da-a0a3-1380139778ff",
+        "name": "testeraro",
+        "email": "yasmeen.king77@gmail.com",
+        "createdAt": "2024-04-28T22:11:43.606Z",
+        "updatedAt": "2024-04-28T22:11:43.606Z"
+    },
+    {
+        "id": "cd6f8cb4-f439-44ea-9de1-19b329432cf3",
+        "name": "New User name",
+        "email": "new@email.com",
+        "createdAt": "2024-04-28T22:15:10.151Z",
+        "updatedAt": "2024-04-28T22:15:10.151Z"
+    },
+    {
+        "id": "d93bd9db-fc05-45ed-83fd-88d4b591abaa",
+        "name": "testeraro",
+        "email": "keven.lueilwitz15@yahoo.com",
+        "createdAt": "2024-04-28T22:15:42.478Z",
+        "updatedAt": "2024-04-28T22:15:42.478Z"
+    }
+]

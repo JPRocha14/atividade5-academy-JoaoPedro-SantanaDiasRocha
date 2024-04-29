@@ -1,0 +1,51 @@
+[
+    {
+        "id": "ca8efbac-3269-4d28-8e89-4cd53d73f197",
+        "name": "Maynard",
+        "email": "ramon80@yahoo.com",
+        "createdAt": "2024-04-28T21:11:00.495Z",
+        "updatedAt": "2024-04-28T21:11:00.495Z"
+    },
+    {
+        "id": "daaa1c9a-a73c-41a2-af29-74a0aff8c336",
+        "name": "Name Surname",
+        "email": "user@example.com",
+        "createdAt": "2024-04-28T21:11:37.274Z",
+        "updatedAt": "2024-04-28T21:11:37.274Z"
+    },
+    {
+        "id": "48f2301b-495b-405e-b605-b1ee001afdc7",
+        "name": "Susan",
+        "email": "turner42@gmail.com",
+        "createdAt": "2024-04-28T21:12:38.531Z",
+        "updatedAt": "2024-04-28T21:12:38.531Z"
+    },
+    {
+        "id": "c4bca583-4888-4a57-9c26-9f51651c67c5",
+        "name": "Price",
+        "email": "pascale.turner41@hotmail.com",
+        "createdAt": "2024-04-28T21:14:21.522Z",
+        "updatedAt": "2024-04-28T21:14:21.522Z"
+    },
+    {
+        "id": "de028241-1aeb-4d9f-83fb-47912beb4e56",
+        "name": "Direct Assurance Consultant",
+        "email": "mozell.funk@hotmail.com",
+        "createdAt": "2024-04-28T21:14:34.183Z",
+        "updatedAt": "2024-04-28T21:14:34.183Z"
+    },
+    {
+        "id": "22a6d5c8-f88c-4fc3-a187-ceae7a089e3b",
+        "name": "Verla",
+        "email": "victoria57@yahoo.com",
+        "createdAt": "2024-04-28T21:15:51.011Z",
+        "updatedAt": "2024-04-28T21:15:51.011Z"
+    },
+    {
+        "id": "9d61824e-f394-48cf-80d5-d81742b65298",
+        "name": "KatelynKent Connelly IIIJack Kertzmann",
+        "email": "timmothy.green58@gmail.com",
+        "createdAt": "2024-04-28T21:17:27.627Z",
+        "updatedAt": "2024-04-29T02:11:24.989Z"
+    }
+]
