@@ -34,7 +34,7 @@ describe('Cadastro de usuário', function () {
 
             cy.get(paginaCadastro.messageUsuarioSalvo).invoke('text').should('equal', 'Usuário salvo com sucesso!');
             paginaCadastro.clickButtonVoltar();
-            cy.get('.sc-gsFSXq').should('be.visible').click().type(novoEmail);
+            paginaInicial.clickButtonPesquisa(novoEmail);
 
             cy.wait(2000);
             paginaInicial.clickButtonVerDetalhes();
@@ -54,7 +54,7 @@ describe('Cadastro de usuário', function () {
             cy.wait('@postUsers');
             cy.get(paginaCadastro.messageUsuarioSalvo).invoke('text').should('equal', 'Usuário salvo com sucesso!');
             paginaCadastro.clickButtonVoltar();
-            cy.get('.sc-gsFSXq').should('be.visible').click().type(novoEmail);
+            paginaInicial.clickButtonPesquisa(novoEmail);
             cy.wait(2000);
 
             paginaInicial.clickButtonVerDetalhes();
@@ -76,7 +76,7 @@ describe('Cadastro de usuário', function () {
             cy.wait('@postUsers');
             cy.get(paginaCadastro.messageUsuarioSalvo).invoke('text').should('equal', 'Usuário salvo com sucesso!');
             paginaCadastro.clickButtonVoltar();
-            cy.get('.sc-gsFSXq').should('be.visible').click().type(novoEmail);
+            paginaInicial.clickButtonPesquisa(novoEmail);
             cy.wait(2000);
 
             paginaInicial.clickButtonVerDetalhes();
@@ -98,7 +98,7 @@ describe('Cadastro de usuário', function () {
             cy.wait('@postUsers');
             cy.get(paginaCadastro.messageUsuarioSalvo).invoke('text').should('equal', 'Usuário salvo com sucesso!');
             paginaCadastro.clickButtonVoltar();
-            cy.get('.sc-gsFSXq').should('be.visible').click().type(novoEmail);
+            paginaInicial.clickButtonPesquisa(novoEmail);
             cy.wait(2000);
 
             paginaInicial.clickButtonVerDetalhes();
