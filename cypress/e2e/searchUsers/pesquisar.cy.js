@@ -15,7 +15,7 @@ describe('Pesquisa de Usuários', function () {
     });
 
     describe('Pesquisa por nome', function () {
-        it.only('Deve permitir pesquisar usuários pelo nome', function () {
+        it('Deve permitir pesquisar usuários pelo nome', function () {
             nome = 'Joao';
             email = faker.internet.email().toLowerCase();
 
