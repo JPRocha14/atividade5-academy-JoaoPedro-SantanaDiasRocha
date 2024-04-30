@@ -1,8 +1,12 @@
 import { faker } from '@faker-js/faker';
+import CadastroPage from '../../support/pages/cadastro.page';
+import PaginaInicial from '../../support/pages/paginaInicial.page';
 
 describe('Listagem de Usuários', function () {
     const name = 'Joao Pedro';
     const email = faker.internet.email().toLowerCase();
+    var cadastroPagina = new CadastroPage();
+    var paginaInicial = new PaginaInicial();
 
     beforeEach(function () {
         cy.visit('');
@@ -43,11 +47,10 @@ describe('Listagem de Usuários', function () {
             cy.get('p').invoke('text').should('equal', 'Cadastre um novo usuário');
             cy.contains('a', 'Cadastre um novo usuário').should('be.visible').click();
 
-            cy.get('#name').type(name);
-            cy.get('#email').type(email);
-            cy.get('.sc-dAlyuH').should('be.visible').click();
-
-            cy.get('.go3958317564').invoke('text').should('equal', 'Usuário salvo com sucesso!')
+            cadastroPagina.typeNome(name);
+            cadastroPagina.typeEmail(email);
+            cadastroPagina.clickButtonSalvar();
+            cy.get(cadastroPagina.messageUsuarioSalvo).invoke('text').should('equal', 'Usuário salvo com sucesso!');
         });
     });
 
@@ -60,24 +63,21 @@ describe('Listagem de Usuários', function () {
                     statusCode: 200,
                     body: usuariosCriados
                 }).as('nextPage');
-
             });
 
             cy.wait('@nextPage');
 
-            cy.get('#listaUsuarios').should('be.visible');
+            paginaInicial.getListaUsuarios();
+            cy.get(paginaInicial.buttonPreviousPage).should('be.disabled');
+            cy.get(paginaInicial.buttonActualPage).invoke('text').should('equal', '1 de 2');
+            paginaInicial.clickNextPage();
 
-            cy.get('#paginacaoVoltar').should('be.disabled');
-            cy.get('#paginacaoAtual').invoke('text').should('equal', '1 de 2');
-            cy.get('#paginacaoProximo').should('be.enabled').click();
+            paginaInicial.getListaUsuarios();
+            cy.get(paginaInicial.buttonActualPage).invoke('text').should('equal', '2 de 2');
+            cy.get(paginaInicial.buttonNextPage).should('be.disabled');
+            paginaInicial.clickPreviousPage();
 
-            cy.get('#listaUsuarios').should('be.visible');
-
-            cy.get('#paginacaoAtual').invoke('text').should('equal', '2 de 2');
-            cy.get('#paginacaoProximo').should('be.disabled');
-            cy.get('#paginacaoVoltar').should('be.enabled').click();
-
-            cy.get('#listaUsuarios').should('be.visible');
+            paginaInicial.getListaUsuarios();
         });
 
         it('Deve permitir voltar à tela inicial clicando no ícone da Raro no canto superior esquerdo', function () {
@@ -90,16 +90,16 @@ describe('Listagem de Usuários', function () {
 
             cy.wait('@usuarios');
 
-            cy.get('#listaUsuarios').should('be.visible');
+            paginaInicial.getListaUsuarios();
             cy.get('#listaUsuarios > :nth-child(1)').should('be.visible');
 
-            cy.get('#paginacaoVoltar').should('be.disabled');
-            cy.get('#paginacaoAtual').invoke('text').should('equal', '1 de 3');
-            cy.get('#paginacaoProximo').should('be.enabled').dblclick();
+            cy.get(paginaInicial.buttonPreviousPage).should('be.disabled');
+            cy.get(paginaInicial.buttonActualPage).invoke('text').should('equal', '1 de 3');
+            cy.get(paginaInicial.buttonNextPage).should('be.enabled').dblclick();
 
-            cy.get('#paginacaoAtual').invoke('text').should('equal', '3 de 3');
+            cy.get(paginaInicial.buttonActualPage).invoke('text').should('equal', '3 de 3');
 
-            cy.get('.sc-eqUAAy').should('be.visible').click();
+            paginaInicial.clickLogoRaro();
 
             cy.wait('@usuarios');
             cy.get('#listaUsuarios > :nth-child(1)').should('be.visible');

@@ -1,34 +1,94 @@
 import { faker } from '@faker-js/faker';
+import CadastroPage from '../../support/pages/cadastro.page';
+import PaginaInicial from '../../support/pages/paginaInicial.page';
+import PaginaEdicao from '../../support/pages/paginaEdicao.page';
 
 describe('Pesquisa de Usuários', function () {
+    var nome;
+    var email;
+    var cadastroPagina = new CadastroPage();
+    var paginaInicial = new PaginaInicial();
+    var paginaEdicao = new PaginaEdicao();
+
     beforeEach(function () {
         cy.visit('https://rarocrud-frontend-88984f6e4454.herokuapp.com/users');
     });
 
-    var nome;
-    var email;
-
     describe('Pesquisa por nome', function () {
-        it('Deve permitir pesquisar usuários pelo nome', function () {
-            nome = faker.person.firstName();
+        it.only('Deve permitir pesquisar usuários pelo nome', function () {
+            nome = 'Joao';
             email = faker.internet.email().toLowerCase();
 
-            cy.intercept('POST', '/api/v1/users').as('postUsers');
+            cy.intercept('POST', '/api/v1/users', {
+                statusCode: 201,
+                body: {
+                    id: "4c31d974-da0c-429a-9442-40a5ca6a9d80",
+                    name: nome,
+                    email: email,
+                    updatedAt: "2024-04-30T14:58:42.324Z",
+                    createdAt: "2024-04-30T14:58:42.324Z"
+                },
+            },
+            ).as('postUsers');
 
-            cy.contains('a[href="/users/novo"]', 'Novo').should('be.visible').click();
+            cy.intercept('GET', '/api/v1/users', {
+                statusCode: 200,
+                body: [
+                    {
+                        id: "4c31d974-da0c-429a-9442-40a5ca6a9d80",
+                        name: nome,
+                        email: email,
+                        updatedAt: "2024-04-30T14:58:42.324Z",
+                        createdAt: "2024-04-30T14:58:42.324Z"
+                    },
+                ],
+            }).as('getUsers');
 
-            cy.get('#name').type(nome);
-            cy.get('#email').type(email);
-            cy.get('.sc-dAlyuH').click();
+            cy.intercept('GET', '/api/v1/users/4c31d974-da0c-429a-9442-40a5ca6a9d80', {
+                statusCode: 200,
+                body:
+                {
+                    id: "4c31d974-da0c-429a-9442-40a5ca6a9d80",
+                    name: nome,
+                    email: email,
+                    updatedAt: "2024-04-30T14:58:42.324Z",
+                    createdAt: "2024-04-30T14:58:42.324Z"
+                },
+            }).as('getUserId');
+
+            // cy.intercept('GET', 'https://rarocrud-80bf38b38f1f.herokuapp.com/api/v1/search?value=' + nome, {
+            //     statusCode: 200,
+            //     body: [
+            //         {
+            //             id: "4c31d974-da0c-429a-9442-40a5ca6a9d80",
+            //             name: nome,
+            //             email: email,
+            //             updatedAt: "2024-04-30T14:58:42.324Z",
+            //             createdAt: "2024-04-30T14:58:42.324Z"
+            //         }
+            //     ]
+            // }).as('getUserName');
+
+            paginaInicial.clickButtonNovo();
+
+            // criando usuário para pesquisar depois
+            cadastroPagina.typeNome(nome);
+            cadastroPagina.typeEmail(email);
+
+            cadastroPagina.clickButtonSalvar();
             cy.wait('@postUsers');
 
-            cy.contains('Voltar').should('be.visible').click();
+            cadastroPagina.clickButtonVoltar();
+            cy.wait('@getUsers');
 
-            cy.get('.sc-gsFSXq').click().type(nome);
-            cy.wait(2000);
-            cy.get('#userDataDetalhe').should('be.visible').click();
-            cy.get('#userName').should('be.visible').invoke('val').should('equal', nome);
-            cy.get('#userEmail').should('be.visible').invoke('val').should('equal', email);
+            paginaInicial.clickButtonPesquisa(nome);
+            // cy.wait('@getUserName');
+
+            paginaInicial.clickButtonVerDetalhes();
+            cy.wait('@getUserId');
+
+            cy.get(paginaEdicao.inputNome).should('be.visible').invoke('val').should('equal', nome);
+            cy.get(paginaEdicao.inputEmail).should('be.visible').invoke('val').should('equal', email);
         });
 
         it('Não deve aparecer nenhum usuário ao pesquisar por nome não cadastrado', function () {
@@ -41,7 +101,7 @@ describe('Pesquisa de Usuários', function () {
 
             cy.wait('@getUsers');
 
-            cy.get('.sc-gsFSXq').click().type('Nome que nao existe');
+            paginaInicial.clickButtonPesquisa('Nome que nao existe');
 
             cy.get('h3').invoke('text').should('equal', 'Ops! Não existe nenhum usuário para ser exibido.');
             cy.get('p').invoke('text').should('equal', 'Cadastre um novo usuário');
@@ -55,23 +115,24 @@ describe('Pesquisa de Usuários', function () {
 
             cy.intercept('POST', '/api/v1/users').as('postUsers');
 
-            cy.contains('a[href="/users/novo"]', 'Novo').should('be.visible').click();
+            paginaInicial.clickButtonNovo();
 
-            cy.get('#name').type(nome);
-            cy.get('#email').type(email);
-            cy.get('.sc-dAlyuH').click();
+            // criando usuário para pesquisar depois
+            cadastroPagina.typeNome(nome);
+            cadastroPagina.typeEmail(email);
+            cadastroPagina.clickButtonSalvar();
             cy.wait('@postUsers');
 
-            cy.contains('Voltar').should('be.visible').click();
+            cadastroPagina.clickButtonVoltar();
 
-            cy.get('.sc-gsFSXq').click().type(email);
+            paginaInicial.clickButtonPesquisa(email);
             cy.wait(2000);
-            cy.get('#userDataDetalhe').should('be.visible').click();
-            cy.get('#userName').should('be.visible').invoke('val').should('equal', nome);
-            cy.get('#userEmail').should('be.visible').invoke('val').should('equal', email);
+            paginaInicial.clickButtonVerDetalhes();
+            cy.get(paginaEdicao.inputNome).should('be.visible').invoke('val').should('equal', nome);
+            cy.get(paginaEdicao.inputEmail).should('be.visible').invoke('val').should('equal', email);
         });
 
-        it('Não deve aparecer usuário ao pesquisar por email não cadastrado', function () {
+        it('Não deve aparecer nenhum usuário ao pesquisar por email não cadastrado', function () {
             cy.fixture('./sixMoreUsers.json').then(function (usuariosCriados) {
                 cy.intercept('GET', '/api/v1/users', {
                     statusCode: 200,
@@ -81,7 +142,7 @@ describe('Pesquisa de Usuários', function () {
 
             cy.wait('@getUsers');
 
-            cy.get('.sc-gsFSXq').click().type('emailinexistente@gmail.com');
+            paginaInicial.clickButtonPesquisa('emailinexistente@gmail.com');
 
             cy.get('h3').invoke('text').should('equal', 'Ops! Não existe nenhum usuário para ser exibido.');
             cy.get('p').invoke('text').should('equal', 'Cadastre um novo usuário');
