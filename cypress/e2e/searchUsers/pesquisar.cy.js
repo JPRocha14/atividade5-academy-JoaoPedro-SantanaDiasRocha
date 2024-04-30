@@ -56,19 +56,6 @@ describe('Pesquisa de Usuários', function () {
                 },
             }).as('getUserId');
 
-            // cy.intercept('GET', 'https://rarocrud-80bf38b38f1f.herokuapp.com/api/v1/search?value=' + nome, {
-            //     statusCode: 200,
-            //     body: [
-            //         {
-            //             id: "4c31d974-da0c-429a-9442-40a5ca6a9d80",
-            //             name: nome,
-            //             email: email,
-            //             updatedAt: "2024-04-30T14:58:42.324Z",
-            //             createdAt: "2024-04-30T14:58:42.324Z"
-            //         }
-            //     ]
-            // }).as('getUserName');
-
             paginaInicial.clickButtonNovo();
 
             // criando usuário para pesquisar depois
@@ -82,8 +69,6 @@ describe('Pesquisa de Usuários', function () {
             cy.wait('@getUsers');
 
             paginaInicial.clickButtonPesquisa(nome);
-            // cy.wait('@getUserName');
-
             paginaInicial.clickButtonVerDetalhes();
             cy.wait('@getUserId');
 

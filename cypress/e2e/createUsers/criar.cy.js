@@ -176,7 +176,7 @@ describe('Cadastro de usuário', function () {
                 cy.contains('button', 'Cancelar').click();
             });
 
-            it.only('Não deve permitir cadastrar um usuário com campo email maior que 60 caracteres', function () {
+            it('Não deve permitir cadastrar um usuário com campo email maior que 60 caracteres', function () {
                 novoEmail = 'teste'.repeat(11) + '@a.com';
                 paginaCadastro.typeNome(nomeValido);
                 paginaCadastro.typeEmail(novoEmail);
